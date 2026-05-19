@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏄 アクティビティ予約確認書</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FFF8EE;
+  --peach: #FDEBD8;
+  --coral: #F0836A;
+  --terracotta: #D4634A;
+  --ocean: #5B9BAF;
+  --ocean-light: #A8D4E0;
+  --ocean-pale: #EAF6FB;
+  --sage: #7FAF8A;
+  --sage-light: #C2DEC8;
+  --mustard: #E8B84B;
+  --mustard-pale: #FDF6E3;
+  --brown: #5C3D2E;
+  --brown-light: #8B6355;
+  --pink-pale: #FFF0EA;
+  --paper: #FFFCF5;
+  --red: #E05A5A;
+  --red-pale: #FFF0F0;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Klee One', cursive;
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+/* HEADER */
+.header {
+  background: var(--ocean);
+  padding: 40px 24px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.header-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.header-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(36px, 8vw, 58px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+}
+
+.header-title span { color: var(--mustard); }
+
+.header-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 10px;
+}
+
+/* BODY */
+.body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  box-shadow: 3px 4px 0 rgba(92,61,46,0.07);
+  border: 1.5px solid rgba(92,61,46,0.06);
+}
+
+.card-title {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ocean);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px dashed var(--ocean-light);
+  padding-bottom: 10px;
+}
+
+/* BOOKING INFO */
+.info-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+
+.info-label {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: var(--brown-light);
+  white-space: nowrap;
+  min-width: 90px;
+  padding-top: 1px;
+}
+
+.info-value {
+  font-size: 14px;
+  color: var(--brown);
+  flex: 1;
+}
+
+.info-value a {
+  color: var(--ocean);
+  word-break: break-all;
+}
+
+.badge {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-top: 2px;
+}
+
+.badge-blue { background: var(--ocean-pale); color: var(--ocean); }
+.badge-red { background: var(--red-pale); color: var(--red); }
+.badge-green { background: #E8F5EC; color: var(--sage); }
+.badge-yellow { background: var(--mustard-pale); color: #A07800; }
+
+/* SCHEDULE */
+.schedule-list { }
+
+.sch-row {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F5EFE7;
+  align-items: flex-start;
+}
+
+.sch-row:last-child { border-bottom: none; }
+
+.sch-time {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--ocean);
+  min-width: 55px;
+  font-weight: 600;
+}
+
+.sch-content { flex: 1; }
+
+.sch-name {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+.sch-note {
+  font-size: 12px;
+  color: var(--brown-light);
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+/* ITEMS */
+.item-group {
+  margin-bottom: 14px;
+}
+
+.item-group-title {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--terracotta);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-list { list-style: none; }
+
+.item-list li {
+  font-size: 13px;
+  color: var(--brown);
+  padding: 4px 0 4px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.item-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--mustard);
+  font-size: 10px;
+  top: 6px;
+}
+
+.item-list li.warn {
+  color: var(--red);
+}
+
+.item-list li.warn::before { color: var(--red); }
+
+/* ALERT BOX */
+.alert {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.alert-red {
+  background: var(--red-pale);
+  border-left: 4px solid var(--red);
+  color: #8B2222;
+}
+
+.alert-blue {
+  background: var(--ocean-pale);
+  border-left: 4px solid var(--ocean);
+  color: #2A5F70;
+}
+
+.alert-yellow {
+  background: var(--mustard-pale);
+  border-left: 4px solid var(--mustard);
+  color: #7A5A00;
+}
+
+.alert-title {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* SECTION DIVIDER */
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: var(--brown-light);
+  letter-spacing: 0.2em;
+  text-align: center;
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::before, .section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ocean-light);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ocean);
+  text-align: center;
+  padding: 30px 20px;
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.footer-title {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-tag">✦ ACTIVITY BOOKING ✦</p>
+  <h1 class="header-title">アクティビティ<br><span>予約確認書</span></h1>
+  <p class="header-sub">アクティビティ3種 ／ 2026年5月23日（土）</p>
+</div>
+
+<div class="body">
+
+  <!-- 予約情報 -->
+  <div class="card">
+    <div class="card-title">📋 予約情報</div>
+
+    <div class="info-row">
+      <span class="info-label">📅 日程</span>
+      <span class="info-value">2026年5月23日（土）</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🕘 集合時間</span>
+      <span class="info-value"><strong>9:30</strong>（スタッフが車までお迎え）</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">👥 参加人数</span>
+      <span class="info-value">4名</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">💰 料金</span>
+      <span class="info-value">60,000円（税込）／ カード決済済み</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🔢 予約番号</span>
+      <span class="info-value" style="font-family:'Caveat',cursive;font-size:18px;color:var(--ocean);">2605069931484</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🔗 プラン</span>
+      <span class="info-value"><a href="https://activityjapan.com/publish/plan/14520" target="_blank">アクティビティジャパン ↗</a></span>
+    </div>
+  </div>
+
+  <!-- スケジュール -->
+  <div class="card">
+    <div class="card-title">⏱ 当日のスケジュール</div>
+
+    <div class="schedule-list">
+      <div class="sch-row">
+        <div class="sch-time">9:30</div>
+        <div class="sch-content">
+          <div class="sch-name">🚗 集合・出発</div>
+          <div class="sch-note">マリンレジャーハイサイド第一駐車場に集合。スタッフがお迎えに来ます。</div>
+        </div>
+      </div>
+      <div class="sch-row">
+        <div class="sch-time">10:00</div>
+        <div class="sch-content">
+          <div class="sch-name">🎢 ウォータートイ</div>
+          <div class="sch-note">まずはウォータートイでウォーミングアップ！</div>
+        </div>
+      </div>
+      <div class="sch-row">
+        <div class="sch-time">11:00</div>
+        <div class="sch-content">
+          <div class="sch-name">🐟 青の洞窟シュノーケリング</div>
+          <div class="sch-note">沖縄一有名な青の洞窟へ。幻想的な青い光の世界！</div>
+        </div>
+      </div>
+      <div class="sch-row">
+        <div class="sch-time">〜</div>
+        <div class="sch-content">
+          <div class="sch-name">🚗 移動（レンタカー組）</div>
+          <div class="sch-note">青の洞窟終了後、海が綺麗に見えるパラセール会場（宜野湾マリーナ）へ自分たちで移動。約40分・交通状況により変動あり。</div>
+        </div>
+      </div>
+      <div class="sch-row">
+        <div class="sch-time">13:30</div>
+        <div class="sch-content">
+          <div class="sch-name">🪂 パラセーリング</div>
+          <div class="sch-note">空から沖縄の海を一望！テンション最高潮✨</div>
+        </div>
+      </div>
+      <div class="sch-row">
+        <div class="sch-time">14:30</div>
+        <div class="sch-content">
+          <div class="sch-name">🏁 解散</div>
+          <div class="sch-note">海洋状況により終了時刻は前後することあり。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 集合場所 -->
+  <div class="card">
+    <div class="card-title">📍 集合場所</div>
+    <div class="alert alert-blue">
+      <div class="alert-title">🚗 レンタカーでお越しの方</div>
+      マリンレジャーハイサイド 第一駐車場<br>
+      駐車場料金：<strong>1台200円</strong><br>
+      ※タップで場所を確認してください
+    </div>
+    <div class="alert alert-yellow">
+      <div class="alert-title">🚌 バス・タクシーでお越しの方</div>
+      ご予約時に「バス・タクシー利用」とお伝えください。<br>
+      パラセーリング会場の移動についても別途ご案内があります。<br>
+      終了後は宜野湾マリーナで現地解散となります。（タクシー代 1台4,500円前後）
+    </div>
+    <div class="info-row">
+      <span class="info-label">📞 お問合せ</span>
+      <span class="info-value"><strong>098-989-3687</strong></span>
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="card">
+    <div class="card-title">⚠️ 重要な注意事項</div>
+
+    <div class="alert alert-red">
+      <div class="alert-title">🚫 参加できない場合がある方</div>
+      以下に該当する方は事前にスタッフへご相談ください。<br>
+      心臓疾患・てんかん・発作・癒痺 ／ 糖尿病・高血圧・高血圧（生活習慣病として診断）／ 喘息・慢性気管支炎・肺気腫・気管支炎（薬で体内酸素の供給不足）／ 脳検察・脳出血・くも膜下出血・血管や脳などで診断された方 ／ 現在妊娠中・その可能性がある方 ／ 現在疾患や病気でドクターストップがかかっている方 ／ その他スタッフが参加困難と判断した場合
+    </div>
+
+    <div class="alert alert-red">
+      <div class="alert-title">⏰ 遅刻・キャンセルについて</div>
+      ボート出港時間が厳しく決められているため、<strong>集合時間に遅れると当日キャンセル扱い</strong>になります。余裕をもって来店ください。<br>
+      キャンセルは<strong>2日前まで無料</strong>。
+    </div>
+
+    <div class="alert alert-yellow">
+      <div class="alert-title">🌊 海洋状況について</div>
+      参加前日にご予約内容の確認とともに、海洋状況に関するご案内メールが届きます。前日・当日のご予約については確認メールを省略させていただく場合があります。
+    </div>
+
+    <p style="font-size:12px;color:var(--brown-light);margin-top:8px;">※沖縄に割った日はダイビングご参加可能です。ダイビングの後に帰りの飛行機搭乗は出来ません。</p>
+  </div>
+
+  <!-- 持ち物 -->
+  <div class="card">
+    <div class="card-title">🎒 持ち物チェックリスト</div>
+
+    <div class="item-group">
+      <div class="item-group-title">🎢 ウォータートイ</div>
+      <ul class="item-list">
+        <li>水着</li>
+        <li class="warn">日焼けが気になる方はラッシュガード</li>
+      </ul>
+    </div>
+
+    <div class="item-group">
+      <div class="item-group-title">🐟 青の洞窟</div>
+      <ul class="item-list">
+        <li>水着・ビーチサンダル・バスタオル</li>
+      </ul>
+    </div>
+
+    <div class="item-group">
+      <div class="item-group-title">🪂 パラセーリング</div>
+      <ul class="item-list">
+        <li>濡れても良い短パン・Tシャツ</li>
+        <li>沖縄らしいもの（写真映え◎）</li>
+        <li>替えの下着</li>
+        <li class="warn">酔い止め薬（1時間程度前に服用推奨）</li>
+      </ul>
+    </div>
+
+    <div class="alert alert-blue" style="margin-top:14px;margin-bottom:0;">
+      <div class="alert-title">💡 パラセーリングのヒント</div>
+      ・天候によってはお断りすることも。濡れても良い羽織りものがあると便利！<br>
+      ・パラセーリングは基本的には足は濡らさない程度ですが、波次第で濡れることあり<br>
+      ・Tシャツつきで参加の場合、替えの下着も持参推奨<br>
+      ・1時間程度前に乗り物酔いが心配な方はお薬を
+    </div>
+  </div>
+
+  <!-- クーポン注意 -->
+  <div class="alert alert-yellow" style="margin-bottom:16px;">
+    <div class="alert-title">🎟 クーポンについて</div>
+    じゃらん・あそぼー・アクティビティジャパン・その他サイトで取得したクーポンは最低利用金額がございます。悪天候等により参加コースが変更となる場合は利用金額も変更になることがありますのでクーポンが使用できなくなる場合もあります。ご了承ください。
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-title">🌊 楽しんできてね！</div>
+  2026年5月23日（土）集合 9:30<br>
+  マリンレジャーハイサイド 第一駐車場<br>
+  📞 098-989-3687
+</div>
+
+</body>
+</html>
