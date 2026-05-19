@@ -492,6 +492,22 @@ body {
   line-height: 2;
 }
 
+/* ===== PAGE BREAK CONTROL ===== */
+@media print {
+  .cover { page-break-after: always; }
+  .map-section { page-break-after: always; }
+  .day-section { page-break-before: always; }
+  .checklist-section { page-break-before: always; }
+  .contacts-section { page-break-before: always; }
+  .footer { page-break-before: always; }
+  .tl-row { page-break-inside: avoid; }
+  .tl-card { page-break-inside: avoid; }
+  .rain-box { page-break-inside: avoid; }
+  .cl-item { page-break-inside: avoid; }
+  .contact-card { page-break-inside: avoid; }
+  .day-header { page-break-inside: avoid; page-break-after: avoid; }
+}
+
 /* decorative tape */
 .tape {
   position: absolute;
@@ -886,6 +902,7 @@ body {
         </div>
         <p class="tl-note">青の洞窟シュノーケリング ＋ パラセーリング ＋ ウォータートイ</p>
         <span class="tl-pill pill-green">✓ 予約済み！14:30解散</span>
+        <br><a class="tl-link" href="https://princessmeifan-png.github.io/沖縄旅行/activity_confirm.html" target="_blank">📋 予約確認書を見る</a>
       </div>
     </div>
 
