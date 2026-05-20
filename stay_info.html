@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 宿泊情報｜ゲストハウスRion</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FFF8EE;
+  --peach: #FDEBD8;
+  --coral: #F0836A;
+  --terracotta: #D4634A;
+  --ocean: #5B9BAF;
+  --ocean-light: #A8D4E0;
+  --ocean-pale: #EAF6FB;
+  --sage: #7FAF8A;
+  --sage-light: #C2DEC8;
+  --mustard: #E8B84B;
+  --mustard-pale: #FDF6E3;
+  --brown: #5C3D2E;
+  --brown-light: #8B6355;
+  --paper: #FFFCF5;
+  --red: #E05A5A;
+  --red-pale: #FFF0F0;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Klee One', cursive;
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+/* HEADER */
+.header {
+  background: var(--sage);
+  padding: 40px 24px 54px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  top: -100px; right: -60px;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.header-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 10px;
+}
+
+.header-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(36px, 8vw, 58px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+}
+
+.header-title span { color: var(--mustard); }
+
+.header-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 10px;
+}
+
+/* BODY */
+.body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  box-shadow: 3px 4px 0 rgba(92,61,46,0.07);
+  border: 1.5px solid rgba(92,61,46,0.06);
+}
+
+.card-title {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--sage);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px dashed var(--sage-light);
+  padding-bottom: 10px;
+}
+
+/* INFO ROW */
+.info-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+
+.info-label {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: var(--brown-light);
+  white-space: nowrap;
+  min-width: 100px;
+  padding-top: 1px;
+}
+
+.info-value {
+  font-size: 14px;
+  color: var(--brown);
+  flex: 1;
+  line-height: 1.6;
+}
+
+.info-value a {
+  color: var(--ocean);
+  text-decoration: none;
+}
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--mustard-pale);
+  border: 2px solid var(--mustard);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.highlight-label {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  color: #A07800;
+  margin-bottom: 4px;
+}
+
+.highlight-value {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--terracotta);
+  letter-spacing: 0.1em;
+}
+
+.highlight-note {
+  font-size: 11px;
+  color: #A07800;
+  margin-top: 4px;
+}
+
+/* ALERT */
+.alert {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.alert-red {
+  background: var(--red-pale);
+  border-left: 4px solid var(--red);
+  color: #8B2222;
+}
+
+.alert-blue {
+  background: var(--ocean-pale);
+  border-left: 4px solid var(--ocean);
+  color: #2A5F70;
+}
+
+.alert-yellow {
+  background: var(--mustard-pale);
+  border-left: 4px solid var(--mustard);
+  color: #7A5A00;
+}
+
+.alert-green {
+  background: #F0F8F2;
+  border-left: 4px solid var(--sage);
+  color: #2A5E3A;
+}
+
+.alert-title {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* LINK BUTTON */
+.link-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ocean-pale);
+  border: 1.5px solid var(--ocean-light);
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: var(--ocean);
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.link-btn:hover { background: var(--ocean-light); color: white; }
+
+.link-btn-icon { font-size: 20px; }
+
+.link-btn-text { flex: 1; }
+
+.link-btn-title {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 600;
+  display: block;
+}
+
+.link-btn-sub {
+  font-size: 11px;
+  opacity: 0.8;
+  display: block;
+}
+
+.link-btn-arrow { font-size: 16px; opacity: 0.6; }
+
+/* CHECK GRID */
+.check-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.check-time {
+  background: var(--sage);
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.check-label {
+  font-family: 'Caveat', cursive;
+  font-size: 19px;
+  color: var(--brown);
+}
+
+.check-sub {
+  font-size: 12px;
+  color: var(--brown-light);
+}
+
+/* ROUTE */
+.route-step {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--sage-light);
+  align-items: flex-start;
+}
+
+.route-step:last-child { border-bottom: none; }
+
+.route-icon { font-size: 20px; flex-shrink: 0; }
+
+.route-text { flex: 1; }
+
+.route-name {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+.route-note {
+  font-size: 12px;
+  color: var(--brown-light);
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--sage);
+  text-align: center;
+  padding: 36px 20px;
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.footer-title {
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-tag">✦ STAY INFO ✦</p>
+  <h1 class="header-title">ゲストハウス<br><span>Rion</span></h1>
+  <p class="header-sub">沖縄県中頭郡読谷村長浜131-1 ／ 2泊3日</p>
+</div>
+
+<div class="body">
+
+  <!-- 予約情報 -->
+  <div class="card">
+    <div class="card-title">📋 予約情報</div>
+
+    <div class="info-row">
+      <span class="info-label">📅 チェックイン</span>
+      <span class="info-value"><strong>2026年5月22日（金）16:00〜</strong></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📅 チェックアウト</span>
+      <span class="info-value"><strong>2026年5月24日（日）10:00まで</strong></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">👥 人数</span>
+      <span class="info-value">ゲスト4名 ／ 2泊</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🔢 予約コード</span>
+      <span class="info-value" style="font-family:'Caveat',cursive;font-size:20px;color:var(--sage);font-weight:600;">HM4ETD55CF</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">📍 住所</span>
+      <span class="info-value">〒904-0324<br>沖縄県中頭郡読谷村長浜131-1</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">🔗 施設</span>
+      <span class="info-value"><a href="https://x.gd/H8MIl" target="_blank">ゲストハウスRion 公式 ↗</a></span>
+    </div>
+  </div>
+
+  <!-- キーボックス -->
+  <div class="card">
+    <div class="card-title">🔑 チェックイン方法（セルフ）</div>
+
+    <div class="highlight">
+      <div class="highlight-label">キーボックス暗証番号</div>
+      <div class="highlight-value">005581</div>
+      <div class="highlight-note">※宿泊期間中のみ有効</div>
+    </div>
+
+    <a class="link-btn" href="https://drive.google.com/file/d/1dfFxP90JawyIa-69nwJe0qbWnW1Vtsbz/view?usp=drive_link" target="_blank">
+      <span class="link-btn-icon">🔐</span>
+      <span class="link-btn-text">
+        <span class="link-btn-title">キーボックスの開け方</span>
+        <span class="link-btn-sub">詳細はこちら（Googleドライブ）</span>
+      </span>
+      <span class="link-btn-arrow">↗</span>
+    </a>
+
+    <a class="link-btn" href="https://drive.google.com/file/d/1Yz-bGBH1tYZCVja4fY_J6-IZzcv3xGtd/view?usp=drive_link" target="_blank">
+      <span class="link-btn-icon">📖</span>
+      <span class="link-btn-text">
+        <span class="link-btn-title">チェックイン手順・道順の詳細</span>
+        <span class="link-btn-sub">事前に必ず確認してね！</span>
+      </span>
+      <span class="link-btn-arrow">↗</span>
+    </a>
+  </div>
+
+  <!-- チェックイン・アウト時間 -->
+  <div class="card">
+    <div class="card-title">🕐 時間のポイント</div>
+
+    <div class="check-row">
+      <span class="check-time">16:00〜</span>
+      <div>
+        <div class="check-label">✅ チェックイン開始</div>
+        <div class="check-sub">初日は屋台村（18:30〜）があるので余裕をもって！</div>
+      </div>
+    </div>
+    <div class="check-row">
+      <span class="check-time">〜10:00</span>
+      <div>
+        <div class="check-label">🚪 チェックアウト</div>
+        <div class="check-sub">最終日は9:30出発予定なので余裕あり◎</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- アクセス -->
+  <div class="card">
+    <div class="card-title">🚗 那覇空港からのアクセス</div>
+
+    <a class="link-btn" href="https://goo.gl/maps/hm1VWy7LFY4PCmNM9" target="_blank">
+      <span class="link-btn-icon">🗺️</span>
+      <span class="link-btn-text">
+        <span class="link-btn-title">Googleマップで開く</span>
+        <span class="link-btn-sub">座標：26°25'13.3"N 127°44'20.9"E</span>
+      </span>
+      <span class="link-btn-arrow">↗</span>
+    </a>
+
+    <div class="route-step">
+      <div class="route-icon">⭐</div>
+      <div class="route-text">
+        <div class="route-name">おすすめ：有料道路ルート（約60分）</div>
+        <div class="route-note">高速45分＋石川ICで降りて海沿い15分。有料道路料金610円。渋滞が少なく一番スムーズ！</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-icon">⚠️</div>
+      <div class="route-text">
+        <div class="route-name">下道ルートは注意</div>
+        <div class="route-note">距離は最短でも信号が多く渋滞しやすい。3車線が多いので運転が苦手な方は特に注意。</div>
+      </div>
+    </div>
+
+    <div class="alert alert-blue" style="margin-top:4px;margin-bottom:0;">
+      <div class="alert-title">💡 Googleマップでの検索方法</div>
+      「読谷村長浜131-1（よみたんそん ながはま）」で検索すると3パターンの道順が出ます。
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="alert alert-red">
+    <div class="alert-title">🔇 近隣住民への配慮</div>
+    夜21時〜朝7時は大声での会話・音楽などはNG！<br>
+    <strong>苦情があった場合、罰金5万円</strong>が請求されますのでご注意を。<br>
+    みんなでルールを守って楽しい旅に🙏
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-title">🏠 ただいまRion！</div>
+  ゲストハウスRion<br>
+  〒904-0324 沖縄県中頭郡読谷村長浜131-1<br><br>
+  チェックイン：5/22（金）16:00〜<br>
+  チェックアウト：5/24（日）10:00まで<br>
+  🔑 暗証番号：005581
+</div>
+
+</body>
+</html>
