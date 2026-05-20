@@ -401,12 +401,15 @@ body {
   flex-shrink: 0;
   margin-top: 1px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background: white;
   transition: background 0.2s;
   position: relative;
 }
 
-.cl-box.checked { background: var(--sage); }
-.cl-box.checked::after {
+.cl-box:checked { background: var(--sage); border-color: var(--sage); }
+.cl-box:checked::after {
   content: '✓';
   position: absolute;
   top: -3px; left: 2px;
@@ -1042,42 +1045,42 @@ body {
 
   <div class="checklist-grid">
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
-        <strong>がじろ飯店</strong>に電話予約<br>5/23（土）19:30〜
+        <strong>がじろう飯店</strong>に電話予約<br>5/23（土）19:00〜
         <span class="cl-urgent" style="color:var(--terracotta)">🔴 今すぐ！ ☎ 098-988-7272</span>
       </div>
     </div>
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
         <strong>レンタカー</strong>を予約<br>那覇空港受取・4名乗り
         <span class="cl-urgent" style="color:var(--mustard)">🟡 早めに！</span>
       </div>
     </div>
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
         <strong>アクティビティ</strong>の集合場所と<br>雨天中止の連絡方法を確認
         <span class="cl-urgent" style="color:var(--mustard)">🟡 予約先へ連絡</span>
       </div>
     </div>
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
         <strong>現金</strong>を準備する<br>（ジャッキーは現金のみ・JCB可）
         <span class="cl-urgent" style="color:var(--sage)">🟢 出発前日まで</span>
       </div>
     </div>
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
         水着・シュノーケルグッズ<br>の準備
         <span class="cl-urgent" style="color:var(--ocean)">🏄 忘れずに！</span>
       </div>
     </div>
     <div class="cl-item">
-      <div class="cl-box" onclick="this.classList.toggle('checked')"></div>
+      <input type="checkbox" class="cl-box">
       <div class="cl-text">
         日焼け止め・酔い止め<br>の準備
         <span class="cl-urgent" style="color:var(--sage)">🟢 マスト！</span>
