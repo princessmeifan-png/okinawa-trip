@@ -922,27 +922,18 @@ body {
       <div class="tl-dot blue"></div>
       <div class="tl-card">
         <div class="tl-top">
-          <span class="tl-time">19:30</span>
+          <span class="tl-time">19:00</span>
           <span class="tl-emoji">🍽</span>
-          <span class="tl-name">ディナー ／ どっちにする？</span>
+          <span class="tl-name">がじろう飯店 ／ ディナー</span>
         </div>
         <p class="tl-note" style="margin-bottom:10px;">当日の気分で選ぼう！どちらも読谷村・月曜定休なので土曜はOK ✅</p>
 
         <div style="background:#FFF5F0;border-radius:10px;padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--coral);">
-          <div style="font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:var(--brown);">🍺 A. がじろ飯店</div>
+          <div style="font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:var(--brown);">🍺 がじろう飯店</div>
           <div style="font-size:12px;color:var(--brown-light);margin-top:3px;">沖縄素材×アジア調味料の地元居酒屋。評価4.9⭐ 活気ある雰囲気で飲みたい夜に！</div>
           <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
             <span class="tl-pill pill-red" style="margin:0;">📞 098-988-7272</span>
             <a class="tl-link" style="margin:0;" href="https://tabelog.com/okinawa/A4703/A470304/47019667/" target="_blank">食べログ ↗</a>
-          </div>
-        </div>
-
-        <div style="background:#F0F7FF;border-radius:10px;padding:12px 14px;border-left:3px solid var(--ocean);">
-          <div style="font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:var(--brown);">🥩 B. スモークハウス225</div>
-          <div style="font-size:12px;color:var(--brown-light);margin-top:3px;">民泊のすぐ近く！自家製燻製×北海道食材の隠れ家ビストロ。泡盛マイスターの店主がいるお酒好きにたまらない一軒。</div>
-          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-            <span class="tl-pill pill-blue" style="margin:0;">📞 090-4984-8131</span>
-            <a class="tl-link" style="margin:0;" href="https://hitosara.com/0006131874/food.html" target="_blank">ヒトサラ ↗</a>
           </div>
         </div>
       </div>
@@ -1110,19 +1101,11 @@ body {
     </div>
     <div class="contact-card">
       <div>
-        <div class="contact-name">🍺 A. がじろ飯店</div>
-        <div class="contact-desc">DAY 2 夕飯候補 ／ 読谷村 ／ 月曜定休</div>
+        <div class="contact-name">🍺 がじろう飯店</div>
+        <div class="contact-desc">DAY 2 夕飯 ／ 読谷村 ／ 月曜定休・19:00〜</div>
         <a class="contact-link" href="https://tabelog.com/okinawa/A4703/A470304/47019667/" target="_blank">食べログ ↗</a>
       </div>
       <div class="contact-tel">098-988-7272</div>
-    </div>
-    <div class="contact-card blue">
-      <div>
-        <div class="contact-name">🥩 B. スモークハウス225</div>
-        <div class="contact-desc">DAY 2 夕飯候補 ／ 読谷村長浜 ／ 月曜定休・18:00〜</div>
-        <a class="contact-link" href="https://hitosara.com/0006131874/food.html" target="_blank">ヒトサラ ↗</a>
-      </div>
-      <div class="contact-tel">090-4984-8131</div>
     </div>
     <div class="contact-card green">
       <div>
@@ -1169,8 +1152,8 @@ body {
 </div>
 
 <script>
-// Checklist persistence in session
-document.querySelectorAll('.cl-box').forEach((box, i) => {
+// Checklist toggle
+document.querySelectorAll('.cl-box').forEach((box) => {
   box.addEventListener('click', () => {
     box.classList.toggle('checked');
   });
