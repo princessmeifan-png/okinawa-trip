@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 フォトギャラリー｜ゲストハウスRion</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FFF8EE;
+  --sage: #7FAF8A;
+  --sage-light: #C2DEC8;
+  --terracotta: #D4634A;
+  --brown: #5C3D2E;
+  --brown-light: #8B6355;
+  --mustard: #E8B84B;
+  --ocean: #5B9BAF;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Klee One', cursive;
+  color: var(--brown);
+}
+
+/* HEADER */
+.header {
+  background: var(--sage);
+  padding: 40px 24px 54px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  top: -100px; right: -60px;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.header-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 10px;
+}
+
+.header-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(36px, 8vw, 58px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+}
+
+.header-title span { color: var(--mustard); }
+
+.header-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 10px;
+}
+
+/* BODY */
+.body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+/* GRID */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #E8DDD0;
+  box-shadow: 3px 4px 0 rgba(92,61,46,0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  aspect-ratio: 4/3;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02) rotate(0.5deg);
+  box-shadow: 5px 6px 0 rgba(92,61,46,0.15);
+}
+
+.gallery-item:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.gallery-item img.loading {
+  opacity: 0;
+}
+
+.gallery-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(92,61,46,0.7), transparent);
+  padding: 20px 12px 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  font-family: 'Caveat', cursive;
+  background: none;
+  border: none;
+  padding: 4px 10px;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+.lightbox-prev { left: -56px; }
+.lightbox-next { right: -56px; }
+
+.lightbox-caption {
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* BACK LINK */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--sage);
+  text-decoration: none;
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  background: white;
+  border-radius: 20px;
+  border: 1.5px solid var(--sage-light);
+  box-shadow: 2px 3px 0 rgba(92,61,46,0.07);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--sage);
+  text-align: center;
+  padding: 30px 20px;
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+}
+
+.footer-title {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  color: white;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 480px) {
+  .lightbox-prev { left: -44px; }
+  .lightbox-next { right: -44px; }
+  .lightbox-nav { padding: 8px 12px; font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-tag">✦ PHOTO GALLERY ✦</p>
+  <h1 class="header-title">お部屋・<span>施設ギャラリー</span></h1>
+  <p class="header-sub">ゲストハウスRion ／ 読谷村長浜131-1</p>
+</div>
+
+<div class="body">
+  <a class="back-link" href="stay_info.html">← 宿泊情報に戻る</a>
+
+  <div class="gallery-grid" id="gallery">
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="photo01.png" alt="外観・全景" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">外観・全景</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="photo02.png" alt="リビングダイニング" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">リビングダイニング</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="photo03.png" alt="キッチン" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">キッチン</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="photo04.png" alt="Room 1" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">Room 1</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="photo05.png" alt="Room 2" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">Room 2</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(5)">
+      <img src="photo06.png" alt="Room 3" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">Room 3</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(6)">
+      <img src="photo07.png" alt="和室" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">和室</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(7)">
+      <img src="photo08.png" alt="バスルーム" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">バスルーム</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(8)">
+      <img src="photo09.png" alt="景色・周辺" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">景色・周辺</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(9)">
+      <img src="photo10.png" alt="その他" class="loading" onload="this.classList.remove('loading')">
+      <div class="gallery-label">その他</div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxBtn()">✕ 閉じる</button>
+    <button class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)">‹</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="changePhoto(1)">›</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-title">🏠 ゲストハウスRion</div>
+  沖縄県中頭郡読谷村長浜131-1
+</div>
+
+<script>
+const photos = [
+  { src: 'photo01.png', caption: '外観・全景' },
+  { src: 'photo02.png', caption: 'リビングダイニング' },
+  { src: 'photo03.png', caption: 'キッチン' },
+  { src: 'photo04.png', caption: 'Room 1' },
+  { src: 'photo05.png', caption: 'Room 2' },
+  { src: 'photo06.png', caption: 'Room 3' },
+  { src: 'photo07.png', caption: '和室' },
+  { src: 'photo08.png', caption: 'バスルーム' },
+  { src: 'photo09.png', caption: '景色・周辺' },
+  { src: 'photo10.png', caption: 'その他' },
+];
+
+let current = 0;
+
+function openLightbox(index) {
+  current = index;
+  document.getElementById('lightbox-img').src = photos[current].src;
+  document.getElementById('lightbox-caption').textContent = `${current + 1} / ${photos.length}　${photos[current].caption}`;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightboxBtn() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeLightbox(e) {
+  if (e.target === document.getElementById('lightbox')) {
+    closeLightboxBtn();
+  }
+}
+
+function changePhoto(dir) {
+  current = (current + dir + photos.length) % photos.length;
+  document.getElementById('lightbox-img').src = photos[current].src;
+  document.getElementById('lightbox-caption').textContent = `${current + 1} / ${photos.length}　${photos[current].caption}`;
+}
+
+// スワイプ対応
+let touchStartX = 0;
+document.getElementById('lightbox').addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+});
+document.getElementById('lightbox').addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) changePhoto(diff > 0 ? 1 : -1);
+});
+</script>
+
+</body>
+</html>
